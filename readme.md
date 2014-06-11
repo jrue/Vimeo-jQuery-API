@@ -214,6 +214,9 @@ $("#myvideo").vimeo("play")
     .on("pause", function(){ console.log("paused"); })
 ```
 
+Released under the GPL Version 2 license
+* http://www.opensource.org/licenses/gpl-2.0.php
+
 
 
 
