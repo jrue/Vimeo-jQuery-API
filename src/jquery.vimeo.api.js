@@ -35,7 +35,7 @@
                 return;
 
             //store data as JSON object
-            var data = $.type(d.originalEvent.data) === "string" ? $.parseJSON(d.originalEvent.data) : d.originalEvent.data;
+            data = $.type(d.originalEvent.data) === "string" ? $.parseJSON(d.originalEvent.data) : d.originalEvent.data;
 
             //make sure data is not blank
             if(!data)
@@ -179,7 +179,7 @@
         }
 
         //If this method will return data, (starts with "get") then use callback once return message comes through
-        if(option1.toString().substr(0, 3) === "get" && typeof option2 === "function"){
+        if((option1.toString().substr(0, 3) === "get" || option1.toString() === "paused") && typeof option2 === "function"){
             (function(cml, func, i){
                 var interval = window.setInterval(function(){
 
