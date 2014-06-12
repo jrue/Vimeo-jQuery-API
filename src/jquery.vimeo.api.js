@@ -42,8 +42,8 @@
                 return;
 
             //get the id of this vimeo video, hopefully they set it. If not, use first one we find
-            var vimeoVideo   = this.setPlayerID(data);
-            var vimeoAPIurl  = this.setVimeoAPIurl(vimeoVideo);
+            vimeoVideo   = this.setPlayerID(data);
+            vimeoAPIurl  = this.setVimeoAPIurl(vimeoVideo);
 
             //If this is an event message, like ready or paused
             if(data.hasOwnProperty("event"))
