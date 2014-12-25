@@ -31,7 +31,7 @@
                 return;
 
             //make sure data was sent
-            if(!d.originalEvent.hasOwnProperty("data"))
+            if(!"data" in d.originalEvent)
                 return;
 
             //store data as JSON object
