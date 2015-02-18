@@ -1,0 +1,25 @@
+{
+  "name": "Vimeo-jQuery-API",
+  "version": "0.0.1",
+  "homepage": "https://github.com/josephdburdick/Vimeo-jQuery-API",
+  "authors": [
+    "Joseph Burdick <josephdburdick@gmail.com>"
+  ],
+  "description": "An easy way to control Vimeo videos using standard jQuery event structure and methods.",
+  "main": "src/jquery.vimeo.api.js",
+  "keywords": [
+    "video",
+    "iframe",
+    "vimeo",
+    "api",
+    "javascript"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
