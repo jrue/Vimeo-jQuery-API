@@ -48,31 +48,31 @@ $("#myvideo").vimeo("play");
 $("#myvideo").vimeo("seekTo", 5); //seeks to five seconds
 ```
 
-####$("#myvideo").vimeo("play");
+###$("#myvideo").vimeo("play");
 Plays videos as soon as this is called. Note for time sensitive presentations: this will wait until the video is ready and receives a ready message from Vimeo, so there might be a slight delay if playing right when the page loads.
 
-####$("#myvideo").vimeo("pause");
+###$("#myvideo").vimeo("pause");
 Will pause video at it's current location.
 
-####$("#myvideo").vimeo("unload");
+###$("#myvideo").vimeo("unload");
 Equivalent to stop or rewind, as it reverts player back to original state.
 
-####$("#myvideo").vimeo("setVolume", 0.5);
+###$("#myvideo").vimeo("setVolume", 0.5);
 Sets the volume of the video as a percentage from 0 to 1.
 
-####$("#myvideo").vimeo("setLoop", true);
+###$("#myvideo").vimeo("setLoop", true);
 Set looping to boolean value.
 
-####$("#myvideo").vimeo("seekTo", 5);
+###$("#myvideo").vimeo("seekTo", 5);
 Seeks to specified number of seconds. (Does not work on mobile)
 
-####$("#myvideo").vimeo("setColor", "#333333");
+###$("#myvideo").vimeo("setColor", "#333333");
 Sets color of player to hex value as a string.
 
 ##Return Calls
 These are methods which return information about video. Because we need to contact Vimeo for information about the status of the video, the second argument needs to be a callback function. This also means, these calls will be asynchronous, and there might be a small delay.
 
-####paused
+###paused
 ```javascript
 $("#myvideo").vimeo("paused", function(data){  
     console.log( "Is paused?", data ); 
@@ -80,7 +80,7 @@ $("#myvideo").vimeo("paused", function(data){
 ```
 Returns boolean showing whether video is paused.
 
-####getCurrentTime
+###getCurrentTime
 ```javascript
 $("#myvideo").vimeo("getCurrentTime", function(data){
 	console.log( "Current time", data ); 
@@ -88,7 +88,7 @@ $("#myvideo").vimeo("getCurrentTime", function(data){
 ```
 Returns current play time as seconds. This is a one time return. For continous updates, use playProgress event.
 
-####getDuration
+###getDuration
 ```javascript
 $("#myvideo").vimeo("getDuration", function(data){
 	console.log( "Video length", data ); 
@@ -96,7 +96,7 @@ $("#myvideo").vimeo("getDuration", function(data){
 ```
 Return total duration of video in seconds.
 
-####getVolume
+###getVolume
 ```javascript
 $("#myvideo").vimeo("getVolume", function(data){
 	console.log( "Volume is", data ); 
@@ -104,7 +104,7 @@ $("#myvideo").vimeo("getVolume", function(data){
 ```
 Return volume in seconds
 
-####getVideoHeight or getVideoWidth
+###getVideoHeight or getVideoWidth
 ```javascript
 $("#myvideo").vimeo("getVideoHeight", function(data){
 	console.log( "Height", data ); 
@@ -115,7 +115,7 @@ $("#myvideo").vimeo("getVideoWidth", function(data){
 ```
 Height or width as number.
 
-####getVideoUrl
+###getVideoUrl
 ```javascript
 $("#myvideo").vimeo("getVideoUrl", function(data){
 	console.log( "Video URL", data ); 
@@ -123,7 +123,7 @@ $("#myvideo").vimeo("getVideoUrl", function(data){
 ```
 Get the url to the video itself as a string. (not the Vimeo page, but the actual video embed)
 
-####getColor
+###getColor
 ```javascript
 $("#myvideo").vimeo("getColor", function(data){
 	console.log( "Player color", data ); 
@@ -138,7 +138,7 @@ This plugin uses the standard jQuery notation for calling events.
 These will **trigger when they happen**. As with any event, you need to include a function callback.
 
 
-####play
+###play
 ```javascript
 $("#myvideo").on("play", function(){
 	console.log( "Video is playing" );
@@ -146,7 +146,7 @@ $("#myvideo").on("play", function(){
 ```
 Fires whenever the video is played.
 
-####pause
+###pause
 ```javascript
 $("#myvideo").on("pause", function(){
 	console.log( "Video is paused" );
@@ -154,7 +154,7 @@ $("#myvideo").on("pause", function(){
 ```
 Fires whenever the video is paused.
 
-####finish
+###finish
 ```javascript
 $("#myvideo").on("finish", function(){
 	console.log( "Video is done playing" );
@@ -162,7 +162,7 @@ $("#myvideo").on("finish", function(){
 ```
 Fires whenever the video is finished.
 
-####loadProgress
+###loadProgress
 ```javascript
 $("#myvideo").on("loadProgress", function(d){
 	console.log( d.bytesLoaded );
@@ -176,7 +176,7 @@ $("#myvideo").on("loadProgress", function(d){
 ```
 This will continuously return info as video is **loading**.
 
-####playProgress
+###playProgress
 ```javascript
 $("#myvideo").on("playProgress", function(d){
 	console.log( d.percent );
@@ -189,7 +189,7 @@ $("#myvideo").on("playProgress", function(d){
 ```
 This will continuously return info as video is **playing**.
 
-####seek
+###seek
 ```javascript
 $("#myvideo").on("seek", function(d){
 	console.log( d.seconds );
@@ -219,8 +219,9 @@ Released under the MIT license
 
 Changelog
 =========
+* 2015-02-20   v0.9.2   Fixed Bower package, so it only installs js files.
 * 2015-02-20   v0.9.1   Added package controls for bower, npm, and Grunt tasks.
-* 2015-02-06   v0.9.0   Fixed window.location.protocol, which was missing a colon.
-* 2014-12-25   v0.8.9   Fixed issue with Firefox, which didn't recognize hasOwnProperty. Used for...in instead.
+* 2015-02-06   v0.9.0   Fixed window.location.protocol, which was missing a colon.
+* 2014-12-25   v0.8.9   Fixed issue with Firefox, which didn't recognize hasOwnProperty. Used for...in instead.
 
 
