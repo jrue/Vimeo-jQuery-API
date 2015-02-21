@@ -217,6 +217,10 @@ $("#myvideo").vimeo("play")
 Released under the MIT license
 * http://opensource.org/licenses/MIT
 
-
+Changelog
+=========
+* 2015-02-20   v0.9.1   Added package controls for bower, npm, and Grunt tasks.
+* 2015-02-06   v0.9.0   Fixed window.location.protocol, which was missing a colon.
+* 2014-12-25   v0.8.9   Fixed issue with Firefox, which didn't recognize hasOwnProperty. Used for...in instead.
 
 

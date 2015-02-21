@@ -1,3 +1,11 @@
+/**!
+ * Simple jQuery Vimeo API -- By Jeremy Rue
+ * 
+ * Description: A jQuery plugin to easily control Vimeo videos through their API.
+ * Author: Jeremy Rue, jrue@berkeley.edu 
+ * License: MIT
+ * Version: 0.9.1
+ */
 ;(function($, window) {
 
     var vimeoJqueryAPI = {

@@ -2,7 +2,7 @@
   "name": "vimeo-api",
   "title": "A jQuery plugin to easily control Vimeo videos through their API.",
   "description": "A jQuery plugin to easily control Vimeo videos through their API.",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "homepage": "https://github.com/jrue/Vimeo-jQuery-API",
   "author": {
     "name": "Jeremy Rue",
@@ -32,7 +32,7 @@
     "jquery-plugin"
   ],
   "files": [
-        "src/jquery.vimeo.api.js",
-        "src/jquery.vimeo.api.min.js"
+    "dist/jquery.vimeo.api.js",
+    "dist/jquery.vimeo.api.min.js"
   ]
 }
