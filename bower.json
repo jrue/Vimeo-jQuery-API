@@ -31,7 +31,8 @@
     "LICENSE",
     "package.json",
     "vimeoapi.jquery.json",
-    "readme.md"
+    "readme.md",
+    "bower.json"
   ],
   "dependencies": {
     "jquery": ">=1.7"
