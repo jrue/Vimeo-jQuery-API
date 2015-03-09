@@ -219,6 +219,7 @@ Released under the MIT license
 
 Changelog
 =========
+* 2015-03-09   v0.9.3   Fixed playProgress and loadProgress events due to capitalization issue.
 * 2015-02-20   v0.9.2   Fixed Bower package, so it only installs js files.
 * 2015-02-20   v0.9.1   Added package controls for bower, npm, and Grunt tasks.
 * 2015-02-06   v0.9.0   Fixed window.location.protocol, which was missing a colon.

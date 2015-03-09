@@ -106,11 +106,11 @@
                     vid.triggerHandler("seek", [d.data]);
                     break;
 
-                case 'loadProgress':
+                case 'loadprogress':
                     vid.triggerHandler("loadProgress", [d.data]);
                     break;
 
-                case 'playProgress':
+                case 'playprogress':
                     vid.triggerHandler("playProgress", [d.data]);
                     break;
 

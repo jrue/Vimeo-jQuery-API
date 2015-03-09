@@ -4,7 +4,7 @@
  * Description: A jQuery plugin to easily control Vimeo videos through their API.
  * Author: Jeremy Rue, jrue@berkeley.edu 
  * License: MIT
- * Version: 0.9.1
+ * Version: 0.9.3
  */
 ;(function($, window) {
 
@@ -114,11 +114,11 @@
                     vid.triggerHandler("seek", [d.data]);
                     break;
 
-                case 'loadProgress':
+                case 'loadprogress':
                     vid.triggerHandler("loadProgress", [d.data]);
                     break;
 
-                case 'playProgress':
+                case 'playprogress':
                     vid.triggerHandler("playProgress", [d.data]);
                     break;
 
