@@ -19,8 +19,10 @@ $(document).ready(function($) {
 
             console.log("New Volume:", d);
        })
-       .on("playProgress", function(d){
-          console.log("Play Progress", d);
+       .on("playProgress", function(event, data){
+          console.log("Seconds Progress", d.seconds);
+          console.log("Percent Progress", d.percent);
+          console.log("Duration Progress", d.duration);
        })
 
 });

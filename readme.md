@@ -3,6 +3,22 @@ Simple jQuery Vimeo API
 
 An easy way to control Vimeo videos using standard jQuery event structure and methods.
 
+Download
+========
+
+You can check out the entire repo, or download the latest release below:
+
+[jQuery Vimeo API v0.9.3 (zip)](https://github.com/jrue/Vimeo-jQuery-API/archive/v0.9.3.zip)<br>
+[jQuery Vimeo API v0.9.3 (tar.gz)](https://github.com/jrue/Vimeo-jQuery-API/archive/v0.9.3.tar.gz)
+
+
+<small><a href="http://www.bresink.com/osx/sha1.html">checksums</a></small>
+```
+(.zip)    sha1 = 111b3482bd6e03868bd5a243d7492b2da26e3092
+(.tar.gz) sha1 = 85c51e77ad6649e7e903170cb2bb360ba4d316f8
+```
+
+
 Setup
 ========
 Make sure to include this plugin's .js file *after* jQuery library. Use the minified version for best performance.
@@ -164,8 +180,8 @@ Fires whenever the video is finished.
 
 ###loadProgress
 ```javascript
-$("#myvideo").on("loadProgress", function(d){
-	console.log( d.bytesLoaded );
+$("#myvideo").on("loadProgress", function(event, data){
+	console.log( data );
 });
 //{
 //	"percent"     : "0.326",
@@ -178,8 +194,8 @@ This will continuously return info as video is **loading**.
 
 ###playProgress
 ```javascript
-$("#myvideo").on("playProgress", function(d){
-	console.log( d.percent );
+$("#myvideo").on("playProgress", function(event, data){
+	console.log( data );
 });
 //{
 //	"seconds"  : "4.308",
@@ -191,8 +207,8 @@ This will continuously return info as video is **playing**.
 
 ###seek
 ```javascript
-$("#myvideo").on("seek", function(d){
-	console.log( d.seconds );
+$("#myvideo").on("seek", function(event, data){
+	console.log( data );
 });
 //{
 //	"seconds"  : "192.622",
