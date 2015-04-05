@@ -4,7 +4,7 @@
  * Description: A jQuery plugin to easily control Vimeo videos through their API.
  * Author: Jeremy Rue, jrue@berkeley.edu 
  * License: MIT
- * Version: 0.9.3
+ * Version: 0.10.0
  */
 ;(function($, window) {
 
@@ -154,7 +154,7 @@
                 var firstSeperator = (url.indexOf('?') === -1 ? '?' : '&');
 
                 //setup a serialized player_id with jQuery (use an unusual name in case someone manually sets the same name)
-                var param = $.param({"player_id": "vvvvimeoVideo-" + index});
+                var param = $.param({"api": 1, "player_id": "vvvvimeoVideo-" + index});
                 
                 //reload the vimeo videos that don't have player_id
                 $(this).attr("src", url + firstSeperator + param);
