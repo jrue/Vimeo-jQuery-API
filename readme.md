@@ -3,6 +3,7 @@ Simple jQuery Vimeo API
 
 An easy way to control Vimeo videos using standard jQuery event structure and methods.
 
+<!---
 Download
 ========
 
@@ -18,6 +19,7 @@ You can check out the entire repo, or download the latest release below:
 (.tar.gz) sha1 = 85c51e77ad6649e7e903170cb2bb360ba4d316f8
 ```
 
+-->
 
 Setup
 ========
@@ -45,9 +47,10 @@ $(document).ready(function($) {
 
 Multiple videos
 ========
-This plugin will work fine with just a single Vimeo embed with no additional work. But because of a peculiarity with the way Vimeo sends messages, it's impossible to tell which API messages go with which video when there are multiple embeds on the page. The solution for this is to identify each video by appending a special query string identifier to each video's URL.
+Because of a peculiarity with the way Vimeo sends messages, it's impossible to tell which API messages go with which video when there are multiple embeds on the page. The solution for this is to identify each video by appending a special query string identifier to each video's URL.
 
-**Important for multiple videos!!**
+You can include Vimeo videos normally with no additional work, but this plugin will cause all videos to initially reload at the very start of the page. For better efficiency, you should do this yourself manually by adding <strong>`&api=1&player_id=video1`</strong> to the end of the src attribute of your iframe URLs. 
+
 <pre>
 &lt;iframe src="//player.vimeo.com/video/77889659?title=0&amp;byline=0&amp;portrait=0<strong>&amp;api=1&amp;player_id=video1</strong>" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;&lt;/iframe&gt;
 
@@ -235,6 +238,7 @@ Released under the MIT license
 
 Changelog
 =========
+* 2015-04-05   v0.10.0  Support for multiple videos automatically.
 * 2015-03-09   v0.9.3   Fixed playProgress and loadProgress events due to capitalization issue.
 * 2015-02-20   v0.9.2   Fixed Bower package, so it only installs js files.
 * 2015-02-20   v0.9.1   Added package controls for bower, npm, and Grunt tasks.
