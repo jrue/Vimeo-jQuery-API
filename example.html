@@ -24,8 +24,8 @@ $(document).ready(function($) {
           console.log("Percent Progress", data.percent);
           console.log("Duration Progress", data.duration);
        })
-       $('#jaacksvid').on('finish',function () {
-          console.log('finished');
+       $('#jaacksvid').on('pause',function () {
+          console.log('paused');
        });
 
 });
@@ -37,7 +37,6 @@ $(document).ready(function($) {
     <!-- Example Vimeo Video Embed -->
     <iframe id="jaacksvid" src="//player.vimeo.com/video/77889659?title=0&amp;byline=0&amp;portrait=0&amp;color=f2f2ea" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
-    <iframe src="https://player.vimeo.com/video/122437773?color=ffffff&byline=0&portrait=0&badge=0" width="500" height="264" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="https://vimeo.com/122437773">NO ONE IS THIRSTY</a> from <a href="https://vimeo.com/mattlenski">Matt Lenski</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
     
 </body>
 </html>
