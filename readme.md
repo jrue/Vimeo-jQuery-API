@@ -1,8 +1,9 @@
-Simple jQuery Vimeo API
+Simple Vimeo API jQuery Plugin
 ================
 
 An easy way to control Vimeo videos using standard jQuery event structure and methods.
 
+<!---
 Download
 ========
 
@@ -18,42 +19,41 @@ You can check out the entire repo, or download the latest release below:
 (.tar.gz) sha1 = 85c51e77ad6649e7e903170cb2bb360ba4d316f8
 ```
 
+-->
 
 Setup
 ========
-Make sure to include this plugin's .js file *after* jQuery library. Use the minified version for best performance.
+Make sure to include this plugin's .js file *after* jQuery library. Use the minified version in dist folder for best performance.
 
 This plugin works with iframe Vimeo embeds only. You can target the iframe using any normal jQuery CSS conventions, but often it's easier to put an id attribute on the iframe to target it specifically.
 
 ```html
-<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="src/jquery.vimeo.api.min.js"></script>
+<script src="//code.jquery.com/jquery-latest.min.js"></script>
+<script src="dist/jquery.vimeo.api.min.js"></script>
 
+<!-- Vimeo embed code with custom id attribute added -->
 <iframe id="myvideo" src="//player.vimeo.com/video/77889659" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
-```
-
-Place API calls inside jQuerys document ready function.
-
-```
 <script>
+//use jquery document ready function
 $(document).ready(function($) {
+
     $("#myvideo").vimeo("play");
+
 });
 </script>
 ```
 
 Multiple videos
 ========
-This plugin will work fine with just a single Vimeo embed with no additional work. But because of a peculiarity with the way Vimeo sends messages, it's impossible to tell which API messages go with which video when there are multiple embeds on the page. The solution for this is to identify each video by appending a special query string identifier to each video's URL.
+For multiple videos, it is recommended to include a query string to the end of the URL of your video with the variables `api=1`, and `player_id=[unique_name]` for each video, like so:
 
-**Important for multiple videos!!**
-<pre>
-&lt;iframe src="//player.vimeo.com/video/77889659?title=0&amp;byline=0&amp;portrait=0<strong>&amp;api=1&amp;player_id=video1</strong>" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;&lt;/iframe&gt;
+<pre>&lt;iframe src="//player.vimeo.com/video/00000?<strong>&amp;api=1&amp;player_id=vid1</strong>" ... &lt;/iframe&gt;</pre>
 
-&lt;iframe src="//player.vimeo.com/video/93422288?title=0&amp;byline=0&amp;portrait=0<strong>&amp;api=1&amp;player_id=video2</strong>" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;&lt;/iframe&gt;
-</pre>
-Notice at the end of each embedded Vimeo URL, we appended <strong>`&api=1&player_id=video1`</strong> to the end. The `video1` portion should be any unique identifier, ideally matching the id of the iframe. This will ensure best performance.
+Because of a peculiarity with the way Vimeo sends messages, it's impossible to tell which API messages we receive from Vimeo belong to any specific video on the page. The solution for this is to identify each video by appending a special query string identifier to each video's URL.
+
+For convenience (and for CMS plugins) this plugin is designed to work without doing this; it will automatically append generic ids to the query strings of the Vimeo embeds on the page. But in doing so, there will be a brief reloading of the video at page load when it changes the src attribute. In order to prevent this, you should manually add your own.
+
 
 API Methods
 ========
@@ -64,31 +64,68 @@ $("#myvideo").vimeo("play");
 $("#myvideo").vimeo("seekTo", 5); //seeks to five seconds
 ```
 
-###$("#myvideo").vimeo("play");
+play
+----
+```javascript
+$("#myvideo").vimeo("play");
+```
+
 Plays videos as soon as this is called. Note for time sensitive presentations: this will wait until the video is ready and receives a ready message from Vimeo, so there might be a slight delay if playing right when the page loads.
 
-###$("#myvideo").vimeo("pause");
+pause
+----
+```javascript
+$("#myvideo").vimeo("pause");
+```
+
 Will pause video at it's current location.
 
-###$("#myvideo").vimeo("unload");
+unload
+----
+```javascript
+$("#myvideo").vimeo("unload");
+```
+
 Equivalent to stop or rewind, as it reverts player back to original state.
 
-###$("#myvideo").vimeo("setVolume", 0.5);
+setVolume
+----
+```javascript
+$("#myvideo").vimeo("setVolume", 0.5);
+```
+
 Sets the volume of the video as a percentage from 0 to 1.
 
-###$("#myvideo").vimeo("setLoop", true);
+setLoop
+----
+```javascript
+$("#myvideo").vimeo("setLoop", true);
+```
+
 Set looping to boolean value.
 
-###$("#myvideo").vimeo("seekTo", 5);
+seekTo
+----
+```javascript
+$("#myvideo").vimeo("seekTo", 5);
+```
+
 Seeks to specified number of seconds. (Does not work on mobile)
 
-###$("#myvideo").vimeo("setColor", "#333333");
+setColor
+----
+```javascript
+$("#myvideo").vimeo("setColor", "#333333");
+```
+
 Sets color of player to hex value as a string.
 
-##Return Calls
+Return Calls
+=====
 These are methods which return information about video. Because we need to contact Vimeo for information about the status of the video, the second argument needs to be a callback function. This also means, these calls will be asynchronous, and there might be a small delay.
 
-###paused
+paused
+----
 ```javascript
 $("#myvideo").vimeo("paused", function(data){  
     console.log( "Is paused?", data ); 
@@ -96,7 +133,8 @@ $("#myvideo").vimeo("paused", function(data){
 ```
 Returns boolean showing whether video is paused.
 
-###getCurrentTime
+getCurrentTime
+----
 ```javascript
 $("#myvideo").vimeo("getCurrentTime", function(data){
 	console.log( "Current time", data ); 
@@ -104,7 +142,8 @@ $("#myvideo").vimeo("getCurrentTime", function(data){
 ```
 Returns current play time as seconds. This is a one time return. For continous updates, use playProgress event.
 
-###getDuration
+getDuration
+----
 ```javascript
 $("#myvideo").vimeo("getDuration", function(data){
 	console.log( "Video length", data ); 
@@ -112,7 +151,8 @@ $("#myvideo").vimeo("getDuration", function(data){
 ```
 Return total duration of video in seconds.
 
-###getVolume
+getVolume
+----
 ```javascript
 $("#myvideo").vimeo("getVolume", function(data){
 	console.log( "Volume is", data ); 
@@ -120,7 +160,8 @@ $("#myvideo").vimeo("getVolume", function(data){
 ```
 Return volume in seconds
 
-###getVideoHeight or getVideoWidth
+getVideoHeight or getVideoWidth
+----
 ```javascript
 $("#myvideo").vimeo("getVideoHeight", function(data){
 	console.log( "Height", data ); 
@@ -131,7 +172,8 @@ $("#myvideo").vimeo("getVideoWidth", function(data){
 ```
 Height or width as number.
 
-###getVideoUrl
+getVideoUrl
+----
 ```javascript
 $("#myvideo").vimeo("getVideoUrl", function(data){
 	console.log( "Video URL", data ); 
@@ -139,7 +181,8 @@ $("#myvideo").vimeo("getVideoUrl", function(data){
 ```
 Get the url to the video itself as a string. (not the Vimeo page, but the actual video embed)
 
-###getColor
+getColor
+----
 ```javascript
 $("#myvideo").vimeo("getColor", function(data){
 	console.log( "Player color", data ); 
@@ -235,6 +278,7 @@ Released under the MIT license
 
 Changelog
 =========
+* 2015-04-14   v0.10.0  Support for multiple videos automatically.
 * 2015-03-09   v0.9.3   Fixed playProgress and loadProgress events due to capitalization issue.
 * 2015-02-20   v0.9.2   Fixed Bower package, so it only installs js files.
 * 2015-02-20   v0.9.1   Added package controls for bower, npm, and Grunt tasks.

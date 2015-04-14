@@ -14,48 +14,46 @@
                 data;
 
             //is this window message from vimeo?
-            if(!d.originalEvent.origin.match(/vimeo/g))
+            if(!d.originalEvent.origin.match(/vimeo/g)){
                 return;
+            }
 
             //make sure data was sent
-            if(!("data" in d.originalEvent))
+            if(!("data" in d.originalEvent)){
                 return;
+            }
 
             //store data as JSON object
             data = $.type(d.originalEvent.data) === "string" ? $.parseJSON(d.originalEvent.data) : d.originalEvent.data;
 
             //make sure data is not blank
-            if(!data)
+            if(!data){
                 return;
+            }
 
             //get the id of this vimeo video, hopefully they set it. If not, use first one we find
-            vimeoVideo   = this.setPlayerID(data);
-            vimeoAPIurl  = this.setVimeoAPIurl(vimeoVideo);
+            vimeoVideo = this.setPlayerID(data);
 
-            //If this is an event message, like ready or paused
-            if(data.hasOwnProperty("event"))
-                this.handleEvent(data, vimeoVideo, vimeoAPIurl);
+            //check to see if player_ids were set in query string. If not, wait until next message comes through.
+            if(vimeoVideo.length){
 
-            //IF this is a return event message, like getVolume or getCurrentTime
-            if(data.hasOwnProperty("method"))
-                this.handleMethod(data, vimeoVideo, vimeoAPIurl);
+                vimeoAPIurl  = this.setVimeoAPIurl(vimeoVideo);
+
+                //If this is an event message, like ready or paused
+                if(data.hasOwnProperty("event"))
+                    this.handleEvent(data, vimeoVideo, vimeoAPIurl);
+
+                //IF this is a return event message, like getVolume or getCurrentTime
+                if(data.hasOwnProperty("method"))
+                    this.handleMethod(data, vimeoVideo, vimeoAPIurl);
+
+            }
 
         },
 
         setPlayerID : function(d){
 
-            //if they set an player_id as a query string in the URL
-            if(d.hasOwnProperty("player_id")){
-                if($("#" + d.player_id).length){
-                    return $("#" + d.player_id);
-                } else {
-                    return $("iframe[src*=" + d.player_id + "]");
-                }
-            } else {
-
-                //No player_id. Use the first Vimeo video on the page, and hope they don't have multiples
-                return $("iframe[src*='vimeo']").eq(0);
-            }
+            return $("iframe[src*=" + d.player_id + "]");
 
         },
 
@@ -133,6 +131,33 @@
         }
     };
 
+    jQuery(document).ready(function(){
+
+        //go through every iframe with "vimeo.com" in src attribute, and verify it has "player_id" query string
+        $("iframe[src*='vimeo.com']").each(function(index){
+
+            //save the current src attribute
+            var url = $(this).attr('src');
+
+            //if they haven't added "player_id" in their query string, let's add one.
+            if(url.match(/player_id/g) === null){
+
+                //is there already a query string? If so, use &, otherwise ?. 
+                var firstSeperator = (url.indexOf('?') === -1 ? '?' : '&');
+
+                //setup a serialized player_id with jQuery (use an unusual name in case someone manually sets the same name)
+                var param = $.param({"api": 1, "player_id": "vvvvimeoVideo-" + index});
+                
+                //reload the vimeo videos that don't have player_id
+                $(this).attr("src", url + firstSeperator + param);
+
+            } 
+
+        });
+    });
+    
+
+    //this is what kicks things off. Whenever Vimeo sends window message to us, was check to see what it is.
     $(window).on("message", function(e){ vimeoJqueryAPI.init(e); });
 
 
