@@ -9,8 +9,8 @@ Download
 
 You can check out the entire repo, or download the latest release below:
 
-[jQuery Vimeo API v0.10.0 (zip)](https://github.com/jrue/Vimeo-jQuery-API/archive/v0.10.0.zip)<br>
-[jQuery Vimeo API v0.10.0 (tar.gz)](https://github.com/jrue/Vimeo-jQuery-API/archive/v0.10.0.tar.gz)
+[jQuery Vimeo API v0.10.1 (zip)](https://github.com/jrue/Vimeo-jQuery-API/archive/v0.10.1.zip)<br>
+[jQuery Vimeo API v0.10.1 (tar.gz)](https://github.com/jrue/Vimeo-jQuery-API/archive/v0.10.1.tar.gz)
 
 
 
