@@ -272,6 +272,7 @@ Released under the MIT license
 
 Changelog
 =========
+* 2015-06-01	v0.10.1  Force https always. API calls don't seem to work over http
 * 2015-04-14   v0.10.0  Support for multiple videos automatically.
 * 2015-03-09   v0.9.3   Fixed playProgress and loadProgress events due to capitalization issue.
 * 2015-02-20   v0.9.2   Fixed Bower package, so it only installs js files.
