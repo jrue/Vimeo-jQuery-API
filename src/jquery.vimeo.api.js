@@ -61,7 +61,7 @@
 
             //prepend vimeo url with proper protocol
             if(d.attr('src').substr(0, 4) !== 'http'){
-                return window.location.protocol !== 'https:' ? 'http:'+d.attr('src').split('?')[0] : 'https:'+d.attr('src').split('?')[0];
+                return 'https:'+d.attr('src').split('?')[0];
             } else {
                 return d.attr('src').split('?')[0];
             }
