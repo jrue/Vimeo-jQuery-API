@@ -4,7 +4,7 @@
  * Description: A jQuery plugin to easily control Vimeo videos through their API.
  * Author: Jeremy Rue, jrue@berkeley.edu 
  * License: MIT
- * Version: 0.10.0
+ * Version: 0.10.1
  */
 ;(function($, window) {
 
@@ -39,7 +39,7 @@
                 return;
             }
 
-            //get the id of this vimeo video, hopefully they set it. If not, use first one we find
+            //get the id of this vimeo video, hopefully they set it.
             vimeoVideo = this.setPlayerID(data);
 
             //check to see if player_ids were set in query string. If not, wait until next message comes through.

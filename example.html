@@ -3,30 +3,35 @@
 <head>
 <title>Vimeo</title>
 <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
-<script src="src/jquery.vimeo.api.js"></script>
-
+<script type="text/javascript" src="src/jquery.vimeo.api.js"></script>
 <script type="text/javascript">
 $(document).ready(function($) {
 
-    $("#jaacksvid").vimeo("play")
-       .vimeo("getVolume", function(d){
+    $("iframe").on("playProgress", function(event, data){
+      
+      console.log(this);//return the DOM object of the video that called this event
 
-            console.log("Voume set to:", d);
+      console.log("Seconds Progress", data.seconds);
+      console.log("Percent Progress", data.percent);
+      console.log("Duration Progress", data.duration);
 
-        })
-       .vimeo("seekTo", 180)
-       .vimeo("getVolume", function(d){
+    })
+    .vimeo("getVolume", function(d){
 
-            console.log("New Volume:", d);
-       })
-       .on("playProgress", function(event, data){
-          console.log("Seconds Progress", data.seconds);
-          console.log("Percent Progress", data.percent);
-          console.log("Duration Progress", data.duration);
-       })
-       $('#jaacksvid').on('pause',function () {
-          console.log('paused');
-       });
+      console.log("Voume set to:", d);
+
+    })
+    .vimeo("seekTo", 180)
+    .vimeo("getVolume", function(d){
+
+      console.log("New Volume:", d);
+    
+    })
+    .on('pause',function () {
+    
+      console.log('paused');
+    
+    });
 
 });
 
@@ -35,7 +40,9 @@ $(document).ready(function($) {
 <body>
 
     <!-- Example Vimeo Video Embed -->
-    <iframe id="jaacksvid" src="//player.vimeo.com/video/77889659?title=0&amp;byline=0&amp;portrait=0&amp;color=f2f2ea" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    <iframe src="https://player.vimeo.com/video/77889659?title=0&amp;byline=0&amp;portrait=0&amp;color=f2f2ea" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+    <iframe src="https://player.vimeo.com/video/128947850?title=0&amp;byline=0&amp;portrait=0&amp;color=f2f2ea" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
     
 </body>
