@@ -134,7 +134,7 @@ $("#myvideo").vimeo("getCurrentTime", function(data){
 	console.log( "Current time", data ); 
 })
 ```
-Returns current play time as seconds. This is a one time return. For continous updates, use playProgress event.
+Returns current play time as seconds. This is a one time return. For continuous updates, use playProgress event.
 
 getDuration
 ----
