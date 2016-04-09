@@ -204,6 +204,13 @@ This plugin uses the standard jQuery notation for calling events.
 
 These will **trigger when they happen**. As with any event, you need to include a function callback.
 
+###ready
+```javascript
+$("#myvideo").on("ready", function(){  
+    console.log( "Vimeo is ready!" ); 
+});
+```
+Fires when the video is ready.
 
 ###play
 ```javascript
