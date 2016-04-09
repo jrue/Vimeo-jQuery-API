@@ -9,8 +9,8 @@ Download
 
 You can check out the entire repo, or download the latest release below:
 
-[jQuery Vimeo API v0.10.1 (zip)](https://github.com/jrue/Vimeo-jQuery-API/archive/v0.10.1.zip)<br>
-[jQuery Vimeo API v0.10.1 (tar.gz)](https://github.com/jrue/Vimeo-jQuery-API/archive/v0.10.1.tar.gz)
+[jQuery Vimeo API v0.10.2 (zip)](https://github.com/jrue/Vimeo-jQuery-API/archive/v0.10.2.zip)<br>
+[jQuery Vimeo API v0.10.2 (tar.gz)](https://github.com/jrue/Vimeo-jQuery-API/archive/v0.10.2.tar.gz)
 
 
 
@@ -48,6 +48,20 @@ Because of a peculiarity with the way Vimeo sends messages, it's impossible to t
 
 For convenience (and for CMS plugins) this plugin is designed to work without doing this; it will automatically append generic ids to the query strings of the Vimeo embeds on the page. But in doing so, there will be a brief reloading of the video at page load when it changes the src attribute. In order to prevent this, you should manually add your own.
 
+Dynamically Loading Videos
+========
+When dynamically loading videos after page load, this plugin won't capture them in the event chain. You will have to manually call a special method I added called `.vimeoLoad()` after appending your iframe, so it will be processed by the plugin.
+
+```javascript
+$("<iframe />")
+    .attr("id", "myiframe")
+    .attr("src", "https://player.vimeo.com/video/128947850")
+    .appendTo("body")
+    .vimeoLoad() //call this function after appending your iframe
+    .vimeo("play");
+```
+
+Again, **vimeoLoad()** is only required when dynamically adding videos after the fact. This is experimental, and worked in all my test. Please let me know if you have issues in the issue tracker.
 
 API Methods
 ========
@@ -272,8 +286,9 @@ Released under the MIT license
 
 Changelog
 =========
-* 2015-06-01	v0.10.1  Force https always. API calls don't seem to work over http
-* 2015-04-14   v0.10.0  Support for multiple videos automatically.
+* 2016-04-09   v0.10.2   Created new vimeoLoad() method for dynamically loaded videos
+* 2015-06-01   v0.10.1   Force https always. API calls don't seem to work over http
+* 2015-04-14   v0.10.0   Support for multiple videos automatically.
 * 2015-03-09   v0.9.3   Fixed playProgress and loadProgress events due to capitalization issue.
 * 2015-02-20   v0.9.2   Fixed Bower package, so it only installs js files.
 * 2015-02-20   v0.9.1   Added package controls for bower, npm, and Grunt tasks.

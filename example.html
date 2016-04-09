@@ -6,7 +6,24 @@
 <script type="text/javascript" src="src/jquery.vimeo.api.js"></script>
 <script type="text/javascript">
 $(document).ready(function($) {
+    
+    //example of a vimeo video being dyanmically loaded
+    window.setTimeout(function(){
+      $("<iframe />")
+        .attr("id", "myiframe")
+        .attr("src", "https://player.vimeo.com/video/128947850?title=0&amp;byline=0&amp;portrait=0&amp;color=f2f2ea")
+        .appendTo("body")
+        .vimeoLoad()
+        .vimeo("play")
+        .on("pause", function(){
+            console.log("paused");
+        });
+        
+    }, 2000);
 
+    
+
+    
     $("iframe").on("playProgress", function(event, data){
       
       console.log(this);//return the DOM object of the video that called this event
@@ -42,7 +59,7 @@ $(document).ready(function($) {
     <!-- Example Vimeo Video Embed -->
     <iframe src="https://player.vimeo.com/video/77889659?title=0&amp;byline=0&amp;portrait=0&amp;color=f2f2ea" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
-    <iframe src="https://player.vimeo.com/video/128947850?title=0&amp;byline=0&amp;portrait=0&amp;color=f2f2ea" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<!--    <iframe src="https://player.vimeo.com/video/128947850?title=0&amp;byline=0&amp;portrait=0&amp;color=f2f2ea" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>-->
 
     
 </body>

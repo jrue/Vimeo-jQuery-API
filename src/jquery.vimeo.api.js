@@ -130,30 +130,32 @@
             }
         }
     };
+    
+    var loadIframe = $.fn.vimeoLoad = function(){
+
+        //save the current src attribute
+        var url = $(this).attr('src');
+
+        //if they haven't added "player_id" in their query string, let's add one.
+        if(url.match(/player_id/g) === null){
+
+            //is there already a query string? If so, use &, otherwise ?. 
+            var firstSeperator = (url.indexOf('?') === -1 ? '?' : '&');
+
+            //setup a serialized player_id with jQuery (use an unusual name in case someone manually sets the same name)
+            var param = $.param({"api": 1, "player_id": "vvvvimeoVideo-" + Math.floor((Math.random() * 10000000) + 1).toString()});
+
+            //reload the vimeo videos that don't have player_id
+            $(this).attr("src", url + firstSeperator + param);
+
+        }
+        return this;
+    };
 
     jQuery(document).ready(function(){
 
         //go through every iframe with "vimeo.com" in src attribute, and verify it has "player_id" query string
-        $("iframe[src*='vimeo.com']").each(function(index){
-
-            //save the current src attribute
-            var url = $(this).attr('src');
-
-            //if they haven't added "player_id" in their query string, let's add one.
-            if(url.match(/player_id/g) === null){
-
-                //is there already a query string? If so, use &, otherwise ?. 
-                var firstSeperator = (url.indexOf('?') === -1 ? '?' : '&');
-
-                //setup a serialized player_id with jQuery (use an unusual name in case someone manually sets the same name)
-                var param = $.param({"api": 1, "player_id": "vvvvimeoVideo-" + index});
-                
-                //reload the vimeo videos that don't have player_id
-                $(this).attr("src", url + firstSeperator + param);
-
-            } 
-
-        });
+        $("iframe[src*='vimeo.com']").each(function(){loadIframe.call(this);});
     });
     
 
