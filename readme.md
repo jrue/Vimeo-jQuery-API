@@ -7,13 +7,16 @@ An easy way to control Vimeo videos using standard jQuery event structure and me
 Download
 ========
 
-You can check out the entire repo, or download the latest release below:
+You can check out the entire repo, or download the latest release below (production files are in the dist folder):
 
 [jQuery Vimeo API v0.10.2 (zip)](https://github.com/jrue/Vimeo-jQuery-API/archive/v0.10.2.zip)<br>
 [jQuery Vimeo API v0.10.2 (tar.gz)](https://github.com/jrue/Vimeo-jQuery-API/archive/v0.10.2.tar.gz)
 
+You can also link directly to the file using MaxCDN.
 
-
+```html
+<script src="https://cdn.rawgit.com/jrue/Vimeo-jQuery-API/master/dist/jquery.vimeo.api.min.js" integrity="sha384-5HEFbHMdJ1B0NgJ2dK6/jCaTT4DoL3ucsGIIRSyYEAm8KvHrOm6zpb95OCifXv0m" crossorigin="anonymous"></script>
+```
 
 Setup
 ========
@@ -148,7 +151,7 @@ $("#myvideo").vimeo("getCurrentTime", function(data){
 	console.log( "Current time", data ); 
 })
 ```
-Returns current play time as seconds. This is a one time return. For continous updates, use playProgress event.
+Returns current play time as seconds. This is a one time return. For continuous updates, use playProgress event.
 
 getDuration
 ----
