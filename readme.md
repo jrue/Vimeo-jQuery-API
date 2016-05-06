@@ -9,13 +9,13 @@ Download
 
 You can check out the entire repo, or download the latest release below (production files are in the dist folder):
 
-[jQuery Vimeo API v0.10.2 (zip)](https://github.com/jrue/Vimeo-jQuery-API/archive/v0.10.2.zip)<br>
-[jQuery Vimeo API v0.10.2 (tar.gz)](https://github.com/jrue/Vimeo-jQuery-API/archive/v0.10.2.tar.gz)
+[jQuery Vimeo API v0.10.3 (zip)](https://github.com/jrue/Vimeo-jQuery-API/archive/v0.10.3.zip)<br>
+[jQuery Vimeo API v0.10.3 (tar.gz)](https://github.com/jrue/Vimeo-jQuery-API/archive/v0.10.3.tar.gz)
 
 You can also link directly to the file using MaxCDN.
 
 ```html
-<script src="https://cdn.rawgit.com/jrue/Vimeo-jQuery-API/master/dist/jquery.vimeo.api.min.js" integrity="sha384-5HEFbHMdJ1B0NgJ2dK6/jCaTT4DoL3ucsGIIRSyYEAm8KvHrOm6zpb95OCifXv0m" crossorigin="anonymous"></script>
+<script src="https://cdn.rawgit.com/jrue/Vimeo-jQuery-API/master/dist/jquery.vimeo.api.min.js" integrity="sha384-adSSynrFbBgXkH8e8XnQqeJYT8v2lvbOhxwW+U/BxT7sqA7Qao3loYbVEqtyDlq+" crossorigin="anonymous"></script>
 ```
 
 Setup
@@ -296,6 +296,7 @@ Released under the MIT license
 
 Changelog
 =========
+* 2016-05-05   v0.10.3   Major bug fix to events chain being called before iframe is loaded in some cases.
 * 2016-04-09   v0.10.2   Created new vimeoLoad() method for dynamically loaded videos
 * 2015-06-01   v0.10.1   Force https always. API calls don't seem to work over http
 * 2015-04-14   v0.10.0   Support for multiple videos automatically.

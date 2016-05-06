@@ -8,13 +8,15 @@
 
         //This kicks things off on window message event
         init : function(d){
+          
+            console.log(d);
 
             var vimeoVideo,
                 vimeoAPIurl,
                 data;
 
             //is this window message from vimeo?
-            if(!d.originalEvent.origin.match(/vimeo/g)){
+            if(!d.originalEvent.origin.match(/vimeo/ig)){
                 return;
             }
 
@@ -22,6 +24,8 @@
             if(!("data" in d.originalEvent)){
                 return;
             }
+          
+           
 
             //store data as JSON object
             data = $.type(d.originalEvent.data) === "string" ? $.parseJSON(d.originalEvent.data) : d.originalEvent.data;
@@ -75,10 +79,10 @@
         },
 
         handleEvent : function(d, vid, api){
+
             switch (d.event.toLowerCase()) {
                 case 'ready':
-
-                    //Go through all events attached to this element, and set an event listener
+                
                     for(var prop in $._data(vid[0], "events")){
                         if(prop.match(/loadProgress|playProgress|play|pause|finish|seek|cuechange/)){
                             vid[0].contentWindow.postMessage(JSON.stringify({method: 'addEventListener', value: prop}), api);
@@ -134,21 +138,34 @@
     var loadIframe = $.fn.vimeoLoad = function(){
 
         //save the current src attribute
-        var url = $(this).attr('src');
+        var url    = $(this).attr('src'),
+            change = false;
+      
+        if(url.substr(0, 6) !== 'https:'){
+            url = url.substr(0,4) === 'http' ? 'https' + url.substr(4) : 'https:' + url;
+            change = true;
+        }
 
         //if they haven't added "player_id" in their query string, let's add one.
         if(url.match(/player_id/g) === null){
-
+          
+            change = true;
+          
             //is there already a query string? If so, use &, otherwise ?. 
             var firstSeperator = (url.indexOf('?') === -1 ? '?' : '&');
 
             //setup a serialized player_id with jQuery (use an unusual name in case someone manually sets the same name)
             var param = $.param({"api": 1, "player_id": "vvvvimeoVideo-" + Math.floor((Math.random() * 10000000) + 1).toString()});
-
-            //reload the vimeo videos that don't have player_id
-            $(this).attr("src", url + firstSeperator + param);
+          
+            url = url + firstSeperator + param;            
 
         }
+      
+        if(change){
+          $(this).attr("src", url);
+        }
+  
+
         return this;
     };
 
@@ -158,10 +175,33 @@
         $("iframe[src*='vimeo.com']").each(function(){loadIframe.call(this);});
     });
     
+    $(["loadProgress","playProgress","play","pause","finish","seek","cuechange"]).each(function(i,e){
+        jQuery.event.special[e] = {
+          setup: function(data, namespace, eventHandle){
+            
+            var src = $(this).attr("src");
+            if($(this).is("iframe") && src.match(/vimeo/gi)){
+              
+              var element = $(this);
+            
+              if(typeof element.data("vimeoReady") !== "undefined"){
+                  element[0].contentWindow.postMessage(JSON.stringify({
+                    method: 'addEventListener', 
+                    value: e
+                  }), vimeoJqueryAPI.setVimeoAPIurl($(this)));
+              } else {
+                  var _data = typeof element.data("vimeoAPICall") !== "undefined" ? element.data("vimeoAPICall") : [];
+                  _data.push({message:e, api:vimeoJqueryAPI.setVimeoAPIurl(element)});
+                  element.data("vimeoAPICall", _data);
+              }
+            }
+          }
+        };
+    });
+
 
     //this is what kicks things off. Whenever Vimeo sends window message to us, was check to see what it is.
     $(window).on("message", function(e){ vimeoJqueryAPI.init(e); });
-
 
     /**
      *  Vimeo jQuery method plugin
@@ -182,7 +222,7 @@
             message.value  = option2;
 
         //call method, but check if video was ready, otherwise cue it up with jQuery data to be called when video is ready
-        if(element.prop("tagName").toLowerCase() === 'iframe' && message.hasOwnProperty("method")){
+        if(element.is('iframe') && message.hasOwnProperty("method")){
             if(element.data("vimeoReady")){
                 element[0].contentWindow.postMessage(JSON.stringify(message), vimeoJqueryAPI.setVimeoAPIurl(element));
             } else {
