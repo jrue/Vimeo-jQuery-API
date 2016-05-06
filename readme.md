@@ -15,7 +15,7 @@ You can check out the entire repo, or download the latest release below (product
 You can also link directly to the file using MaxCDN.
 
 ```html
-<script src="https://cdn.rawgit.com/jrue/Vimeo-jQuery-API/master/dist/jquery.vimeo.api.min.js" integrity="sha384-adSSynrFbBgXkH8e8XnQqeJYT8v2lvbOhxwW+U/BxT7sqA7Qao3loYbVEqtyDlq+" crossorigin="anonymous"></script>
+<script src="https://cdn.rawgit.com/jrue/Vimeo-jQuery-API/master/dist/jquery.vimeo.api.min.js" integrity="sha384-5HEFbHMdJ1B0NgJ2dK6/jCaTT4DoL3ucsGIIRSyYEAm8KvHrOm6zpb95OCifXv0m" crossorigin="anonymous"></script>
 ```
 
 Setup
