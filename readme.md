@@ -66,6 +66,11 @@ $("<iframe />")
 
 Again, **vimeoLoad()** is only required when dynamically adding videos after the fact. This is experimental, and worked in all my test. Please let me know if you have issues in the issue tracker.
 
+Mobile
+========
+Due to an apparent restriction on iOS, you cannot initiate videos with this API (specifically the play method). However, the events do work and you can trigger other elements on the page during playProgress or finish events.
+
+
 API Methods
 ========
 For methods, you can call API immediately with one argument as a string. For methods which take additional information 
@@ -81,7 +86,7 @@ play
 $("#myvideo").vimeo("play");
 ```
 
-Plays videos as soon as this is called. Note for time sensitive presentations: this will wait until the video is ready and receives a ready message from Vimeo, so there might be a slight delay if playing right when the page loads.
+Plays videos as soon as this is called. Note for time sensitive presentations: this will wait until the video is ready and receives a ready message from Vimeo, so there might be a slight delay if playing right when the page loads. (Due to a restriction in the way Vimeo works, it's not possible to initiate videos on mobile using anything other than the built-in play button.)
 
 pause
 ----
@@ -89,7 +94,7 @@ pause
 $("#myvideo").vimeo("pause");
 ```
 
-Will pause video at it's current location.
+Will pause video at it's current location. (Not able to work on mobile)
 
 unload
 ----
