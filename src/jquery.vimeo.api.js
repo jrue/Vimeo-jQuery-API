@@ -84,7 +84,7 @@
                 case 'ready':
                 
                     for(var prop in $._data(vid[0], "events")){
-                        if(prop.match(/loadProgress|playProgress|play|pause|finish|seek|cuechange/)){
+                        if(prop.match(/loadProgress|playProgress|play|pause|finish|seek|cuechange|loadVideo/)){
                             vid[0].contentWindow.postMessage(JSON.stringify({method: 'addEventListener', value: prop}), api);
                         }
                     }
@@ -114,6 +114,10 @@
 
                 case 'playprogress':
                     vid.triggerHandler("playProgress", [d.data]);
+                    break;
+
+                case 'playprogress':
+                    vid.triggerHandler("loadVideo", [d.data]);
                     break;
 
                 case 'pause':
@@ -175,7 +179,7 @@
         $("iframe[src*='vimeo.com']").each(function(){loadIframe.call(this);});
     });
     
-    $(["loadProgress","playProgress","play","pause","finish","seek","cuechange"]).each(function(i,e){
+    $(["loadProgress","playProgress","play","pause","finish","seek","cuechange","loadVideo"]).each(function(i,e){
         jQuery.event.special[e] = {
           setup: function(data, namespace, eventHandle){
             
