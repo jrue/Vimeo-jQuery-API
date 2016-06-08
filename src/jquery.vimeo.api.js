@@ -8,9 +8,6 @@
 
         //This kicks things off on window message event
         init : function(d){
-          
-            console.log(d);
-
             var vimeoVideo,
                 vimeoAPIurl,
                 data;
