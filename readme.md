@@ -1,6 +1,9 @@
 Simple Vimeo API jQuery Plugin
 ================
 
+NOTE: Vimeo published a much improved JavaScript API similar to this one. It's advisable to use the official one instead: [https://github.com/vimeo/player.js](https://github.com/vimeo/player.js)
+===============
+
 An easy way to control Vimeo videos using standard jQuery event structure and methods.
 
 
